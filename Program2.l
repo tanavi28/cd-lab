@@ -2,11 +2,13 @@
     #include<stdio.h>
 %}
 
-digits [0-9]
+keywords auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while
 
 %%
-(\+|\-)?(({digits}+(\.{digits}*)?)|(\.{digits}+)) {printf("%s is a real number.\n", yytext); }
-[^\n]+ {printf("%s is not a real number.\n", yytext); }
+
+{keywords}    { printf("%s is a C keyword.\n", yytext); }
+[^\n]+ { printf("%s is not a C keyword.\n", yytext); }
+
 %%
 
 int yywrap()
